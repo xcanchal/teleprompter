@@ -1,0 +1,179 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Teleprompter from '../components/Teleprompter';
+import { tpLabels, defaultScript } from '../i18n/ui';
+
+const title = 'Teleprompter online gratis — autocue en tu navegador, sin registro';
+const description =
+  'Teleprompter online gratis con cámara, modo espejo y control de velocidad. Lee tu guion y grábate desde el navegador, sin instalar nada ni crear cuenta.';
+
+const faq = [
+  {
+    q: '¿Este teleprompter online es realmente gratis?',
+    a: 'Sí. Todas las funciones que ves —desplazamiento automático, modo espejo, atajos de teclado y grabación con cámara— son gratuitas, sin registro, sin marca de agua y sin límite de tiempo.',
+  },
+  {
+    q: '¿Se suben mis vídeos o mi guion a algún servidor?',
+    a: 'No. Todo ocurre en tu navegador: el guion se guarda localmente en tu dispositivo y la grabación se procesa con la propia cámara de tu equipo. Nada sale de tu ordenador o móvil.',
+  },
+  {
+    q: '¿Funciona en el móvil y la tablet?',
+    a: 'Sí. Funciona en Chrome, Safari, Firefox y Edge, tanto en escritorio como en móvil. En tablets es especialmente útil combinado con un soporte o un teleprompter físico de cristal.',
+  },
+  {
+    q: '¿Puedo usarlo con un teleprompter físico (de espejo)?',
+    a: 'Sí. Activa el modo espejo y el texto se invertirá horizontalmente para que se lea correctamente reflejado en el cristal del teleprompter. Puedes alternarlo en cualquier momento con la tecla M.',
+  },
+  {
+    q: '¿Qué velocidad de lectura debo usar?',
+    a: 'Depende de tu ritmo al hablar, pero un buen punto de partida son 50–70 píxeles por segundo con letra de 48 px. Haz una pasada de prueba y ajusta con las flechas del teclado sin interrumpir la lectura.',
+  },
+  {
+    q: '¿Se escribe teleprompter, telepronter o telepromter?',
+    a: 'La forma correcta en inglés es "teleprompter", aunque "telepronter" y "telepromter" son variantes muy buscadas. En español también se usa "autocue" o simplemente "prompter". Todas se refieren a lo mismo: la pantalla que desplaza el guion mientras hablas a cámara.',
+  },
+];
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: 'Teleprompter Online Gratis',
+    applicationCategory: 'MultimediaApplication',
+    operatingSystem: 'Web',
+    inLanguage: 'es',
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' },
+    description,
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faq.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  },
+];
+---
+
+<Layout title={title} description={description} lang="es" schema={schema}>
+  <div class="wrap">
+    <header class="site-header">
+      <a class="brand" href="/">Prompter</a>
+      <nav class="lang-switch" aria-label="Idioma">
+        <a href="/" aria-current="true">ES</a>
+        <a href="/en/">EN</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <h1>Teleprompter online gratis</h1>
+        <p class="lede">
+          Autocue en tu navegador: pega el guion, pulsa Empezar y lee a tu ritmo. Con modo espejo,
+          grabación con cámara y control de velocidad en directo. Sin instalar nada, sin registro y
+          sin marcas de agua.
+        </p>
+        <Teleprompter client:load labels={tpLabels.es} defaultScript={defaultScript.es} />
+      </section>
+
+      <section class="block" id="como-usar">
+        <p class="eyebrow">Guía rápida</p>
+        <h2>Cómo usar el teleprompter en 4 pasos</h2>
+        <ol class="steps">
+          <li>
+            <strong>Escribe o pega tu guion</strong> en el panel negro. Se guarda automáticamente en
+            tu navegador, así que puedes cerrar la pestaña y retomarlo más tarde.
+          </li>
+          <li>
+            <strong>Ajusta velocidad y tamaño de letra.</strong> Si vas a grabarte, activa la
+            cámara; si usas un teleprompter físico, activa el modo espejo.
+          </li>
+          <li>
+            <strong>Pulsa Empezar.</strong> El texto pasa a pantalla completa con una cuenta atrás
+            de 3 segundos y empieza a desplazarse solo. La marca roja del margen indica la línea de
+            lectura.
+          </li>
+          <li>
+            <strong>Controla la lectura sin tocar el ratón:</strong> espacio para pausar, flechas
+            para acelerar o frenar, y Esc para salir cuando termines.
+          </li>
+        </ol>
+      </section>
+
+      <section class="block" id="grabar">
+        <p class="eyebrow">Grabación</p>
+        <h2>Grábate mientras lees, sin subir nada a internet</h2>
+        <div class="cols">
+          <div>
+            <p>
+              Activa la cámara y aparecerá tu imagen justo encima de la línea de lectura, para que
+              tu mirada quede lo más cerca posible del objetivo. Pulsa Grabar cuando estés listo y
+              Detener al acabar: obtendrás el vídeo al instante, listo para descargar.
+            </p>
+            <p>
+              A diferencia de la mayoría de herramientas similares, aquí la grabación se procesa
+              íntegramente en tu dispositivo con la tecnología nativa del navegador. Tu vídeo y tu
+              guion nunca se envían a un servidor: no hay cuentas, no hay nube y no hay nadie más
+              viendo tu material.
+            </p>
+          </div>
+          <div>
+            <h3>Ideal para</h3>
+            <p>
+              Vídeos para YouTube, TikTok e Instagram, clases y cursos online, presentaciones de
+              empresa, discursos y bodas, vídeos de producto y entrevistas grabadas. Cualquier
+              situación en la que quieras mirar a cámara sin memorizar el texto.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="block" id="modo-espejo">
+        <p class="eyebrow">Hardware</p>
+        <h2>Modo espejo para teleprompters físicos</h2>
+        <p>
+          Si tienes un teleprompter de cristal (beam splitter), el texto debe mostrarse invertido
+          horizontalmente para leerse bien en el reflejo. Activa el modo espejo antes de empezar o
+          pulsa la tecla <kbd>M</kbd> en cualquier momento durante la lectura. Coloca el móvil o la
+          tablet bajo el cristal, ajusta el tamaño de letra hasta que sea cómodo a la distancia de
+          la cámara, y listo: tienes un autocue profesional sin pagar software.
+        </p>
+      </section>
+
+      <section class="block" id="atajos">
+        <p class="eyebrow">Atajos</p>
+        <h2>Atajos de teclado</h2>
+        <p>
+          El control por teclado te permite corregir el ritmo sin cortar la toma, algo esencial
+          cuando grabas en solitario.
+        </p>
+        <table class="keys">
+          <tbody>
+            <tr><td><kbd>Espacio</kbd></td><td>Pausar y reanudar el desplazamiento</td></tr>
+            <tr><td><kbd>↑</kbd> / <kbd>↓</kbd></td><td>Subir o bajar la velocidad en directo</td></tr>
+            <tr><td><kbd>M</kbd></td><td>Activar o desactivar el modo espejo</td></tr>
+            <tr><td><kbd>Esc</kbd></td><td>Salir de la pantalla completa</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="block faq" id="preguntas">
+        <p class="eyebrow">FAQ</p>
+        <h2>Preguntas frecuentes</h2>
+        {faq.map((f) => (
+          <details>
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>Teleprompter online gratis · Funciona 100% en tu navegador</span>
+      <span><a href="/">Español</a> · <a href="/en/">English</a></span>
+    </footer>
+  </div>
+</Layout>

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://teleprompter-web.com/sitemap-index.xml

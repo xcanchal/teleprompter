@@ -1,0 +1,44 @@
+---
+import '@fontsource-variable/archivo';
+import '@fontsource/instrument-sans/400.css';
+import '@fontsource/instrument-sans/500.css';
+import '@fontsource/instrument-sans/700.css';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  lang: 'es' | 'en';
+  /** JSON-LD objects to inject */
+  schema?: object[];
+}
+
+const { title, description, lang, schema = [] } = Astro.props;
+
+const site = Astro.site ?? new URL('https://example.com');
+const paths: Record<string, string> = { es: '/', en: '/en/' };
+const canonical = new URL(paths[lang], site);
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="es" href={new URL(paths.es, site)} />
+    <link rel="alternate" hreflang="en" href={new URL(paths.en, site)} />
+    <link rel="alternate" hreflang="x-default" href={new URL(paths.es, site)} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta name="generator" content={Astro.generator} />
+    {schema.map((s) => <script type="application/ld+json" set:html={JSON.stringify(s)} />)}
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

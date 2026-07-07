@@ -1,0 +1,177 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Teleprompter from '../../components/Teleprompter';
+import { tpLabels, defaultScript } from '../../i18n/ui';
+
+const title = 'Free Online Teleprompter — autocue in your browser, no sign-up';
+const description =
+  'Free online teleprompter with camera recording, mirror mode and live speed control. Read your script and record yourself in the browser — nothing to install, no account needed.';
+
+const faq = [
+  {
+    q: 'Is this online teleprompter really free?',
+    a: 'Yes. Every feature you see — auto-scroll, mirror mode, keyboard shortcuts and camera recording — is free, with no sign-up, no watermark and no time limit.',
+  },
+  {
+    q: 'Are my videos or my script uploaded to a server?',
+    a: 'No. Everything happens in your browser: your script is stored locally on your device and recordings are processed with your own camera hardware. Nothing leaves your computer or phone.',
+  },
+  {
+    q: 'Does it work on mobile and tablet?',
+    a: 'Yes. It works in Chrome, Safari, Firefox and Edge, on desktop and mobile. Tablets are especially handy combined with a stand or a glass beam-splitter teleprompter rig.',
+  },
+  {
+    q: 'Can I use it with physical teleprompter hardware?',
+    a: 'Yes. Turn on mirror mode and the text flips horizontally so it reads correctly when reflected in the teleprompter glass. You can toggle it at any time with the M key.',
+  },
+  {
+    q: 'What scroll speed should I use?',
+    a: 'It depends on your speaking pace, but 50–70 pixels per second with 48 px text is a good starting point. Do a test pass and fine-tune with the arrow keys without stopping the scroll.',
+  },
+  {
+    q: 'Is it spelled teleprompter, telepronter or telepromter?',
+    a: '"Teleprompter" is the correct spelling, though "telepronter" and "telepromter" are common variants people search for. It is also known as an autocue or simply a prompter — all names for the screen that scrolls your script while you speak to camera.',
+  },
+];
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: 'Free Online Teleprompter',
+    applicationCategory: 'MultimediaApplication',
+    operatingSystem: 'Web',
+    inLanguage: 'en',
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+    description,
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faq.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  },
+];
+---
+
+<Layout title={title} description={description} lang="en" schema={schema}>
+  <div class="wrap">
+    <header class="site-header">
+      <a class="brand" href="/en/">Prompter</a>
+      <nav class="lang-switch" aria-label="Language">
+        <a href="/">ES</a>
+        <a href="/en/" aria-current="true">EN</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <h1>Free online teleprompter</h1>
+        <p class="lede">
+          Autocue in your browser: paste your script, press Start and read at your own pace. With
+          mirror mode, camera recording and live speed control. Nothing to install, no sign-up, no
+          watermarks.
+        </p>
+        <Teleprompter client:load labels={tpLabels.en} defaultScript={defaultScript.en} />
+      </section>
+
+      <section class="block" id="how-to">
+        <p class="eyebrow">Quick guide</p>
+        <h2>How to use the teleprompter in 4 steps</h2>
+        <ol class="steps">
+          <li>
+            <strong>Type or paste your script</strong> into the black panel. It saves automatically
+            in your browser, so you can close the tab and pick up later.
+          </li>
+          <li>
+            <strong>Adjust speed and font size.</strong> If you plan to record yourself, turn on
+            the camera; if you use physical teleprompter hardware, enable mirror mode.
+          </li>
+          <li>
+            <strong>Press Start.</strong> The text goes full screen with a 3-second countdown and
+            begins scrolling on its own. The red mark on the edge shows your reading line.
+          </li>
+          <li>
+            <strong>Control everything without touching the mouse:</strong> space to pause, arrow
+            keys to speed up or slow down, and Esc to exit when you finish.
+          </li>
+        </ol>
+      </section>
+
+      <section class="block" id="record">
+        <p class="eyebrow">Recording</p>
+        <h2>Record yourself while you read — without uploading anything</h2>
+        <div class="cols">
+          <div>
+            <p>
+              Turn on the camera and your image appears right above the reading line, keeping your
+              eyes as close to the lens as possible. Press Record when you are ready and Stop when
+              you finish: the video is available instantly, ready to download.
+            </p>
+            <p>
+              Unlike most similar tools, recording here is processed entirely on your device using
+              the browser's native technology. Your video and your script never touch a server: no
+              accounts, no cloud, nobody else seeing your footage.
+            </p>
+          </div>
+          <div>
+            <h3>Great for</h3>
+            <p>
+              YouTube, TikTok and Instagram videos, online courses and lectures, company
+              presentations, speeches and weddings, product videos and recorded interviews. Any
+              situation where you want to look at the camera without memorizing your lines.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="block" id="mirror-mode">
+        <p class="eyebrow">Hardware</p>
+        <h2>Mirror mode for physical teleprompters</h2>
+        <p>
+          If you own a glass beam-splitter teleprompter, the text has to be flipped horizontally so
+          it reads correctly in the reflection. Enable mirror mode before starting, or press
+          <kbd>M</kbd> at any point while reading. Place your phone or tablet under the glass,
+          adjust the font size until it is comfortable at camera distance, and you have a
+          professional autocue without paying for software.
+        </p>
+      </section>
+
+      <section class="block" id="shortcuts">
+        <p class="eyebrow">Shortcuts</p>
+        <h2>Keyboard shortcuts</h2>
+        <p>
+          Keyboard control lets you fix your pacing without cutting the take — essential when you
+          record alone.
+        </p>
+        <table class="keys">
+          <tbody>
+            <tr><td><kbd>Space</kbd></td><td>Pause and resume scrolling</td></tr>
+            <tr><td><kbd>↑</kbd> / <kbd>↓</kbd></td><td>Raise or lower the speed live</td></tr>
+            <tr><td><kbd>M</kbd></td><td>Toggle mirror mode</td></tr>
+            <tr><td><kbd>Esc</kbd></td><td>Exit full screen</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="block faq" id="faq">
+        <p class="eyebrow">FAQ</p>
+        <h2>Frequently asked questions</h2>
+        {faq.map((f) => (
+          <details>
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>Free online teleprompter · Runs 100% in your browser</span>
+      <span><a href="/">Español</a> · <a href="/en/">English</a></span>
+    </footer>
+  </div>
+</Layout>
