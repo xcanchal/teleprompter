@@ -15,7 +15,7 @@ interface Props {
 
 const { title, description, lang, schema = [] } = Astro.props;
 
-const site = Astro.site ?? new URL('https://example.com');
+const site = Astro.site ?? new URL('https://teleprompter-web.com');
 const paths: Record<string, string> = { es: '/', en: '/en/' };
 const canonical = new URL(paths[lang], site);
 ---
@@ -39,6 +39,7 @@ const canonical = new URL(paths[lang], site);
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta name="generator" content={Astro.generator} />
+    <script defer src="https://analytics.xaviercanchal.com/script.js" data-website-id="0284303d-95a4-478c-82a1-0f9b616e90c4" data-domains="teleprompter-web.com"></script>
     {schema.map((s) => <script type="application/ld+json" set:html={JSON.stringify(s)} />)}
   </head>
   <body>
