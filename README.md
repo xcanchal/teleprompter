@@ -28,12 +28,25 @@ npm run preview
 - `src/pages/index.astro` — Spanish page (root = main market, 800/mo ES + LATAM).
 - `src/pages/en/index.astro` — English page. Adding `pt` = copy a page +
   extend `src/i18n/ui.ts` + add the hreflang path in `Layout.astro`.
-- `src/components/Teleprompter.tsx` — the whole tool, hydrated with
-  `client:load`. Everything client-side: `requestAnimationFrame` scroll,
-  Fullscreen API, `getUserMedia` + `MediaRecorder` (video never leaves the
-  device), `localStorage` persistence, Wake Lock on supported devices.
+- `src/components/Teleprompter.tsx` — the composition root for the hydrated
+  `client:load` island.
+- `src/features/teleprompter/` — local domain types, persistence, presentation
+  engine, and focused browser API hooks. Everything remains client-side:
+  `requestAnimationFrame` scroll, Fullscreen API, `getUserMedia` +
+  `MediaRecorder` (video never leaves the device), localStorage persistence,
+  and Wake Lock on supported devices.
+- `src/components/teleprompter/` — editor and presentation UI sections.
 - Fonts self-hosted via Fontsource (no external font CDN → better LCP).
 - JSON-LD: `SoftwareApplication` + `FAQPage` on both pages.
+
+## Verification
+
+```bash
+npm test
+npm run typecheck
+npm run build
+npm run test:e2e
+```
 
 ## Launch checklist (the ~3-5 backlinks that matter at KD 2)
 

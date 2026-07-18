@@ -1,4 +1,4 @@
-import type { TpLabels } from '../components/Teleprompter';
+import type { TpLabels } from '../components/teleprompter/types';
 
 export const tpLabels: Record<'es' | 'en', TpLabels> = {
   es: {

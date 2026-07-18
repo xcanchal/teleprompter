@@ -356,6 +356,13 @@ kbd {
   text-underline-offset: 3px;
 }
 
+.tp-camera-error {
+  margin: 0.8rem 0 0;
+  color: #ff8e8e;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+}
+
 /* --------------------------- Fullscreen overlay -------------------------- */
 .tp-stage {
   position: fixed;
